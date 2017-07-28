@@ -24,8 +24,13 @@ class SearchBar extends Component {
 		// define event handler right here instead
 		return (
 			//only manipulate state with 'this.setState', else React won't know that we're changing the state
+			// when we tell input that value is provided by 'this.state.term' // we
+			// turn it into a controlled component. A controlled component has it's
+			// valueset by state. Only changes when state changes // grab value from
+			// the state
 			<div>
 				<input
+					value={this.state.term}
 					onChange={event => this.setState({ term: event.target.value })}
 				/>
 			</div>
