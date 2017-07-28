@@ -5,13 +5,31 @@ import React, { Component } from 'react';
 // class component is for when we want to have internal record keeping
 // give access to all functionality from React.Component class
 class SearchBar extends Component {
+	// state = plain javascript object that is used to record and react to user events. Each classbased component has its own state.
+	// whenever state changes, component rerenders, all children rerender as well
+	// Initialize state in constructor object
+	// constructor is called automatically whenever we create new instance
+	constructor(props) {
+		// calling parent method with super
+		super(props);
+		// for initializing variables and state
+		// object we pass has properties we want to record change on
+		this.state = { term: '' };
+	}
 	// must have render method
 	render() {
 		// must return jsx
 		// handle regular browser events by writing 'on#{nameOfEvent}={this.#{nameOfEventHandler}}'
 		// 'onChange' is a prop (property)
 		// define event handler right here instead
-		return <input onChange={event => console.log(event.taget.value)} />;
+		return (
+			//only manipulate state with 'this.setState', else React won't know that we're changing the state
+			<div>
+				<input
+					onChange={event => this.setState({ term: event.target.value })}
+				/>
+			</div>
+		);
 	}
 	// event handler:
 	// have to pass it the event we would like to monitor
