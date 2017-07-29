@@ -10,7 +10,6 @@ import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
 // 1. Create component
 // 2. Take the component, put it on the page (in the DOM)
-const API_KEY = 'AIzaSyDOVi6sO3R6XWBD0CxjXUQO1sgZjhOHFIA';
 
 // const = declaring a variable that's immutable
 // a 'factory' that creates instances of components, a class
@@ -22,7 +21,7 @@ class App extends Component {
 		this.state = { videos: [] };
 
 		// key and property same variable name
-		YTSearch({ key: API_KEY, term: 'surfboards' }, videos => {
+		YTSearch({ key: config.API_KEY, term: 'surfboards' }, videos => {
 			this.setState({ videos });
 		});
 	}
