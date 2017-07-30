@@ -25,23 +25,22 @@ class App extends Component {
 			selectedVideo: null
 		};
 
+	videoSearch(term) {
 		// key and property same variable name
-		YTSearch(
-			{ key: 'AIzaSyBD451eZkEZCY5wCsP8QiW4rOZK-IqFDuc', term: 'surfboards' },
-			videos => {
-				this.setState({
-					videos: videos,
-					selectedVideo: videos[0]
-				});
-			}
-		);
+		YTSearch({ key: 'NONE_OF_YOUR_GODDAMN_BUSINESS', term: term }, videos => {
+			this.setState({
+				videos: videos,
+				selectedVideo: videos[0]
+			});
+		});
 	}
+
 	render() {
 		// returns jsx = subset of js, looks like html
 		// passing data from parent to child component = props
 		return (
 			<div>
-				<SearchBar />
+				<SearchBar onSearchTermChange={term => this.videoSearch(term)} />
 				<VideoDetail video={this.state.selectedVideo} />
 				<VideoList
 					onVideoSelect={selectedVideo => this.setState({ selectedVideo })}
