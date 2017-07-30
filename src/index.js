@@ -8,6 +8,7 @@ import YTSearch from 'youtube-api-search';
 
 // must provide path for files me make ourselves, not for packages
 import SearchBar from './components/search_bar';
+import VideoList from './components/video_list';
 // 1. Create component
 // 2. Take the component, put it on the page (in the DOM)
 
@@ -21,15 +22,20 @@ class App extends Component {
 		this.state = { videos: [] };
 
 		// key and property same variable name
-		YTSearch({ key: config.API_KEY, term: 'surfboards' }, videos => {
-			this.setState({ videos });
-		});
+		YTSearch(
+			{ key: 'AIzaSyBD451eZkEZCY5wCsP8QiW4rOZK-IqFDuc', term: 'surfboards' },
+			videos => {
+				this.setState({ videos });
+			}
+		);
 	}
 	render() {
 		// returns jsx = subset of js, looks like html
+		// passing data from parent to child component = props
 		return (
 			<div>
 				<SearchBar />
+				<VideoList videos={this.state.videos} />
 			</div>
 		);
 	}
