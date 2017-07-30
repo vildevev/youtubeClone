@@ -9,6 +9,7 @@ import YTSearch from 'youtube-api-search';
 // must provide path for files me make ourselves, not for packages
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
+import VideoDetail from './components/video_detail';
 // 1. Create component
 // 2. Take the component, put it on the page (in the DOM)
 
@@ -35,6 +36,7 @@ class App extends Component {
 		return (
 			<div>
 				<SearchBar />
+				<VideoDetail video={this.state.videos[0]} />
 				<VideoList videos={this.state.videos} />
 			</div>
 		);
