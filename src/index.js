@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
+import _ from 'lodash';
 
 // must provide path for files me make ourselves, not for packages
 import SearchBar from './components/search_bar';
@@ -36,11 +37,13 @@ class App extends Component {
 	}
 
 	render() {
+		// debounce makes new function that can only be called every 300 miliseconds
+		const videoSearch = _.debounce(term => {this.videoSearch(term)}, 300);
 		// returns jsx = subset of js, looks like html
 		// passing data from parent to child component = props
 		return (
 			<div>
-				<SearchBar onSearchTermChange={term => this.videoSearch(term)} />
+				<SearchBar onSearchTermChange={videoSearch} />
 				<VideoDetail video={this.state.selectedVideo} />
 				<VideoList
 					onVideoSelect={selectedVideo => this.setState({ selectedVideo })}
